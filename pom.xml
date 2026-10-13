@@ -11,6 +11,7 @@
         <relativePath/>
     </parent>
 
+
     <groupId>com.myskincare</groupId>
     <artifactId>skincare</artifactId>
     <version>0.0.1-SNAPSHOT</version>
