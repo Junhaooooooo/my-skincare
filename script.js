@@ -91,3 +91,5 @@ document.getElementById("testNotification").addEventListener("click", async func
         alert("Could not display the test notification. Check the browser console.");
     }
 });
+
+const VAPID_PUBLIC_KEY = "BKBU3NFeOh73qn-s-GA6uL1zl3oGcBFFFk7dwiV7wy3TG7tY9aacTyM-6s79YToX1NJpoGw6oL1Nv33Xix6aV1c";
