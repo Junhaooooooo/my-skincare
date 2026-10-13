@@ -7,7 +7,7 @@ document.body.style.padding = "40px";
 document.querySelector("h1").style.fontSize = "32px";
 
 
-fetch("http://localhost:8080/api/hello")
+fetch("https://my-skincare.onrender.com/api/hello")
     .then(response => response.text())
     .then(message => {
         console.log(message);
