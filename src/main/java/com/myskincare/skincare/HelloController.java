@@ -46,6 +46,7 @@ public class HelloController {
         }
 
         subscriptions.put(url, subscription);
+
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("Push subscription received.");
     }
@@ -87,7 +88,7 @@ public class HelloController {
                                 (String) keys.get("p256dh"),
                                 (String) keys.get("auth"));
 
-                Subscription subscription =
+                Subscription sub =
                         new Subscription(
                                 (String) saved.get("endpoint"),
                                 subscriptionKeys);
@@ -95,16 +96,17 @@ public class HelloController {
                 String payload = """
                         {
                           "title": "My Skincare Reminder",
-                          "body": "Test successful! 🧴 Time for your night skincare routine.",
+                          "body": "Test successful! Time for your night skincare routine.",
                           "url": "./"
                         }
                         """;
 
-                pushService.send(new Notification(subscription, payload));
+                pushService.send(new Notification(sub, payload));
                 sent++;
             }
 
-            return ResponseEntity.ok("Push sent to " + sent + " device(s).");
+            return ResponseEntity.ok(
+                    "Push sent to " + sent + " device(s).");
 
         } catch (Exception e) {
             e.printStackTrace();
