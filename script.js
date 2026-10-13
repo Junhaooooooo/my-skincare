@@ -66,3 +66,28 @@ document.getElementById("enableNotifications").addEventListener("click", async f
         console.error(error);
     }
 });
+
+
+document.getElementById("testNotification").addEventListener("click", async function () {
+    if (!("Notification" in window)) {
+        alert("Notifications are not supported.");
+        return;
+    }
+
+    if (Notification.permission !== "granted") {
+        alert("Please enable notifications first.");
+        return;
+    }
+
+    try {
+        const registration = await navigator.serviceWorker.ready;
+
+        await registration.showNotification("My Skincare Reminder", {
+            body: "Test successful! 🧴 It's time for your night skincare routine.",
+            icon: "./icon.png"
+        });
+    } catch (error) {
+        console.error(error);
+        alert("Could not display the test notification. Check the browser console.");
+    }
+});
