@@ -43,3 +43,26 @@ if ("Notification" in window) {
         }
     });
 }
+
+
+document.getElementById("enableNotifications").addEventListener("click", async function () {
+    const status = document.getElementById("notificationStatus");
+
+    if (!("Notification" in window) || !("serviceWorker" in navigator) || !("PushManager" in window)) {
+        status.textContent = "Push notifications are not supported in this browser.";
+        return;
+    }
+
+    try {
+        const permission = await Notification.requestPermission();
+
+        if (permission === "granted") {
+            status.textContent = "Notification permission granted!";
+        } else {
+            status.textContent = "Notification permission was not granted.";
+        }
+    } catch (error) {
+        status.textContent = "Could not request notification permission.";
+        console.error(error);
+    }
+});
